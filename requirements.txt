@@ -1,0 +1,4 @@
+flask==1.0.2
+Flask-SQLAlchemy
+psycopg2
+flask-wtf
