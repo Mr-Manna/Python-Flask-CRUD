@@ -20,11 +20,13 @@ class User(db.Model):
     __tablename__ = 'users'
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(80), unique=True, nullable=False)
+    name = db.Column(db.String(80), unique=True, nullable=False)
     email = db.Column(db.String(120), unique=True, nullable=False)
     pwdhash = db.Column(db.String(54))
 
-    def __init__(self,username,email,password):
+    def __init__(self,username,name,email,password):
         self.username = username.lower()
+        self.name = name.lower()
         self.email = email.lower()
         self.set_password(password)
 
@@ -57,7 +59,7 @@ def signup():
         if form.validate() == False:
             return render_template('signup.html', name=signup, form=form)
         else:
-            newuser = User(form.username.data,form.email.data,form.password.data)
+            newuser = User(form.username.data,form.name.data,form.email.data,form.password.data)
             db.session.add(newuser)
             db.session.commit()
 
