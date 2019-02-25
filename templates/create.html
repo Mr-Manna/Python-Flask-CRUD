@@ -1,0 +1,23 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container pt-5 align-middle">
+    <h4>Login</h4>
+    <form method="post" action="/create">
+        <div class="form-group">
+        {{ form.hidden_tag() }}
+
+        {{ form.title.label }}
+        {{ form.title(class="form-control") }}
+        </div>
+        <div class="form-group">
+
+        {{ form.content.label }}
+        {{ form.content(class="form-control")  }}
+        </div>
+        <div class="form-group">
+
+        {{ form.submit(class="btn btn-secondary") }}
+        </div>
+    </form>
+    </div>
+{% endblock %}

@@ -1,0 +1,24 @@
+{% extends "layout.html" %}
+{% block content %}
+    <div class="container pt-5 align-middle">
+    <h4>Edit</h4>
+    <form method="post" action="/editblog">
+        <div class="form-group">
+        {{ form.hidden_tag() }}
+
+        {{ form.title.label }}
+        <input type="text" value="{{blog.title }}" class="form-control" name="title">
+        </div>
+        <div class="form-group">
+
+        {{ form.content.label }}
+        <input type="text" value="{{blog.content }}" class="form-control" name="content">
+
+        </div>
+        <div class="form-group">
+
+        {{ form.submit(class="btn btn-secondary") }}
+        </div>
+    </form>
+    </div>
+{% endblock %}

@@ -1,8 +1,38 @@
 {% extends "layout.html" %}
 {% block content %}
+    <div class="jumbotron">
+        <h1>Welcome To Flask Blog</h1>
+    </div>
+    <div class="container">
 
-<h1>Hello From Flask App</h1>
+    <div>
+        <a href="signup">Sign Up</a>
+        <a href="login">Login</a>
+    </div>
+    <div class="container">
 
-    <a href="signup">Sign Up</a>
+        {% with messages = get_flashed_messages() %}
+         {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+        <div class="row">
+        {% for blog in blogs %}
+        <div class="col-sm-3">
+        <div class="card" style="width: 16rem;">
+          <img class="card-img-top" src="..." alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title">{{ blog.title }}</h5>
+            <p class="card-text">{{ blog.content }}</p>
+            <a href="{{ url_for('detail', pk=blog.id) }}" class="btn btn-primary">Read More</a>
+          </div>
+        </div>
+        </div>
+        {% endfor %}
+        </div>
+        {% endwith %}
+        </div>
+
+    </div>
+
 
 {% endblock %}

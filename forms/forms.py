@@ -8,3 +8,15 @@ class SignupForm(Form):
     email = StringField('Email',validators=[DataRequired()])
     password = PasswordField('Password',validators=[DataRequired()])
     submit = SubmitField('Signup')
+
+
+class LoginForm(Form):
+    username = StringField('Username', validators=[DataRequired()])
+    password = PasswordField('Password', validators=[DataRequired()])
+    submit = SubmitField('Login')
+
+
+class BlogForm(Form):
+    title = StringField('Title')
+    content = StringField('Content')
+    submit = SubmitField('Create')

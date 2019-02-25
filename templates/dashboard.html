@@ -1,14 +1,35 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Dashboard</title>
-</head>
-<body>
-    {% extends "layout.html" %}
-    {% block content %}
-        <h1>Welcome to Dashboard</h1>
-    {% endblock %}
-    <a href="logout" >Logout</a>
-</body>
-</html>
+{% extends "layout.html" %}
+{% block content %}
+    <div class="jumbotron">
+        {% if 'username' in session %}
+            <h1>Welcome to Dashboard {{ username }}</h1>
+        {% endif %}
+        <a href="{{ url_for('create') }}">Create Blog Post</a>
+    <a href="logout">Logout</a>
+    </div>
+    <div class="container">
+        <div class="row">
+
+        {% with messages = get_flashed_messages() %}
+         {% for message in messages %}
+            <li>{{ message }}</li>
+         {% endfor %}
+        {% for blog in blogs %}
+            <div class="col-sm-3">
+            <div class="card" style="width: 16rem;">
+              <img class="card-img-top" src="..." alt="Card image cap">
+              <div class="card-body">
+                <h5 class="card-title">{{ blog.title }}</h5>
+                <p class="card-text">{{ blog.content }}</p>
+                <a href="{{ url_for('detail', pk=blog.id) }}" class="">Read More</a>
+                <a href="{{ url_for('editblog', pk=blog.id) }}">Edit</a>
+                <span><a href="{{ url_for('delete', pk=blog.id) }}">Delete</a></span>
+              </div>
+            </div>
+            </div>
+        {% endfor %}
+        {% endwith %}
+        </div>
+    </div>
+
+{% endblock %}
